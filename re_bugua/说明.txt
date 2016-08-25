@@ -1,0 +1,51 @@
+虚拟机中产品条件：
+图库中有一定量的图片（其实两张以上图片即可）
+没有关注的人和表情包
+关注的主题有两个（关注主题数量可以多但是只检查前两个在发图位置上的对应）
+收藏-已选择不再提示
+
+
+测试用例对应内容：
+注：都是流程性的如果有一个位置出错就会停止用例，如果出错了就直接去查看对应用例。
+New_DraftingTest-制图
+	MyProductionTest-我的制图
+	ChangePlanTest-改图
+	TemplateTest-模板
+	Fight_most_Test-斗图区使用最多页面
+	Fight_new_Test-斗图区最新页面
+	Fight_gif_Test-斗图区动态图片页面
+	Fight_popular_Test-斗图区
+	Classification_Test-分类页面（随机点击一个分类，随机点击一个分类的内容，点击最热，点击最新）
+	Page_swipe_Test-向右滑动页面换区，再向左滑动
+Post_new-发帖
+	Tv_theme_name_Text-发送的主题位置检测
+    	FindPostTest-发求图帖（直接选图和点击图片后选图）
+    	FightPostTest-发斗图帖（直接选图和点击图片后选图）
+    	DiscussPostTest-发讨论图帖（直接选图和点击图片后选图）
+Edit_information-修改个人资料
+	HeadPortraitTest-修改头像
+	RenameTest-修改名字
+	SexTest-修改性别
+	SelfIntroductionTest-修改个人资料
+Replies-回复帖子
+	EssenceTest-精华帖随机回复帖子
+	pleaseTest-求图回复
+	All_areaTest-大杂烩随机回复
+	Please_Test-请求帖发送框收起
+	Random-大杂烩随机检查发送框收起
+Theme-主题
+	Follow_Theme_Test1-点击主题简介的关注按钮
+	Follow_Theme_Test2-点击主题进入后的关注按钮
+	Theme_picture1-单击图片，点击收藏
+	Theme_picture2-长按图片，点击收藏
+	Theme_picture3-简介隐藏
+New_picture-新图
+	Picture1-单击图片检查内容，隐藏按钮，滑动隐藏，收藏按钮
+	Picture2-长按内容检查，收藏按钮
+Follow-关注
+	Follow_user1-在大杂烩随机帖子中关注一个用户并在关注列表查看，然后在关注列表中取消关注（现在还有问题如果用户没有表情包会保存的这里要优化）
+	Follow_package1-关注表情包内部取消关注
+Recommend-推荐页面
+	User_test1-关注推荐用户并进入我的关注页面查看用户后进行取消关注
+share-分享
+	还差改图和模板（装逼也没有哦）的分享
