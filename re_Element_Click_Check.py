@@ -155,10 +155,7 @@ class ElementCheck(object):
         #点击元素1
         event1 = self.wait_element(how1,element1)
         event1.click()
-<<<<<<< HEAD
         time.sleep(1)
-=======
->>>>>>> 7c41702e546925550b43fdf3ee7ab0e4608a3355
         #通过一个元素是否存在对按键进行检验
         try:
             self.wait_element(how2,element2)
@@ -173,15 +170,12 @@ class ElementCheck(object):
         global event
          #截取元素点击前的图片
         event = self.wait_element(how,element)
-<<<<<<< HEAD
         self.Extend.get_screenshot_by_element(event).write_to_file('./Temp', 'click_before')
         load = self.Extend.load_image('./Temp/click_before.png')
         time.sleep(1)
-=======
         print(event)
         self.Extend.get_screenshot_by_element(event).write_to_file('./Temp', 'click_before')
         load = self.Extend.load_image('./Temp/click_before.png')
->>>>>>> 7c41702e546925550b43fdf3ee7ab0e4608a3355
         event.click()
         if type == 'change':
             result = self.Extend.get_screenshot_by_element(event).same_as(load, 0)
