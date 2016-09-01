@@ -14,7 +14,7 @@ class ElementCheck(object):
         self.driver = driver
         self.Extend = Appium_Extend(driver)
     #等待元素超过多久报错
-    def wait(self,how,element,times=10):
+    def wait(self,how,element,times=5):
         global validate
         global event
         global deadline
@@ -57,6 +57,8 @@ class ElementCheck(object):
                     validate = False
                     break
         assert validate == True,'超过设定等待时间'
+        #返回一个元素
+        return event
     #元素检查和截图存放位置
     def click(self,how,element):
     #元素检查和截图存放位置
@@ -76,7 +78,7 @@ class ElementCheck(object):
                 event = self.driver.find_elements_by_class_name(element[0])
                 event = event[int(element[1].split(']')[0])]
             event.click()
-            time.sleep(1)
+            self.wait(how,element)
             validate = True
         except:
             #如果找不到元素进行截图，截图是按照当时时间来命名
@@ -113,7 +115,7 @@ class ElementCheck(object):
                 event = self.driver.find_elements_by_class_name(element1[0])
                 event = event[int(element1[1].split(']')[0])]
             event.click()
-            time.sleep(1)
+            time.sleep(4)
             validate = True
         except:
             #如果找不到元素进行截图，截图是按照当时时间来命名
@@ -131,6 +133,8 @@ class ElementCheck(object):
             self.driver.get_screenshot_as_file('./Fail_picture/'+ localtime +'.png')
             #assert event, '没有找到想要获取的元素'
             validate = False
+        event1 = self.wait(how1,element1)
+        event1.click()
         #通过一个元素是否存在对按键进行检验
         if how2 != 0:
             try:
@@ -335,10 +339,10 @@ class ElementCheck(object):
                 for i in range(5):
                     self.driver.swipe(width*500/1080, height*1200/1766, width*500/1080, height*(1200-v_y)/1766)
                 if type == 'click':
-                    time.sleep(1)
+                    time.sleep(3)
                     event[random.choice(range(len(event)))].click()
                 else:
-                    time.sleep(1)
+                    time.sleep(3)
                     TouchAction(self.driver).long_press(event[random.choice(range(len(event)))]).wait(1).perform()
                 result = True
                 try:
@@ -717,6 +721,7 @@ class ElementCheck(object):
         #单击直接发送按钮
         time.sleep(3)
         self.driver.find_element_by_id('com.bugua.fight:id/btn_send').click()
+        #self.driver.find_element_by_name('QQ好友').click()
         time.sleep(2)
         #发送到QQ
         self.driver.find_element_by_name('QQ').click()
@@ -761,7 +766,7 @@ class ElementCheck(object):
         #发送给管昭
         self.driver.find_element_by_name('管昭').click()
         time.sleep(2)
-        self.driver.find_element_by_id('com.tencent.mm:id/bif').click()
+        self.driver.find_element_by_name('分享').click()
         time.sleep(1)
         self.driver.find_element_by_id('com.tencent.mm:id/a7m').click()
     def share_picture_pengyouquan(self):
@@ -849,7 +854,7 @@ class ElementCheck(object):
         self.driver.find_element_by_name('管昭').click()
         time.sleep(2)
         #点击分享
-        self.driver.find_element_by_id('com.tencent.mm:id/bif').click()
+        self.driver.find_element_by_name('分享').click()
         time.sleep(2)
         #返回斗图神器
         self.driver.find_element_by_id('com.tencent.mm:id/a7m').click()
@@ -876,7 +881,7 @@ class ElementCheck(object):
         time.sleep(2)
         #发送到人人
         self.driver.find_element_by_name('人人').click()
-    #获取当前元素与指定元素进行图片对比
+#获取当前元素与指定元素进行图片对比
     def cintrast_element_picture(self,how,element,picture):
         #元素检查和截图存放位置
         global validate

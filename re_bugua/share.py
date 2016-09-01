@@ -7,7 +7,7 @@ import random
 from appium.webdriver.common.touch_action import TouchAction
 from HTMLTestRunner import HTMLTestRunner
 import  os
-from Element_Click_Check import ElementCheck
+from re_Element_Click_Check import ElementCheck
 
 class ShareTest(unittest.TestCase):
 
@@ -1637,11 +1637,6 @@ if __name__=="__main__":
     # suite.addTest(ShareTest('zhuangbi_share_kongjian'))
     # suite.addTest(ShareTest('zhuangbi_share_weixin'))
     # suite.addTest(ShareTest('zhuangbi_share_pengyouquan'))
-
-
-
-
-
     #执行用例
     runner = unittest.TextTestRunner()
     runner.run(suite)

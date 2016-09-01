@@ -23,12 +23,17 @@ d = webdriver.Remote('http://127.0.0.1:4723/wd/hub', desired_caps)
 
 time.sleep(10)
 
-d.swipe(500,1000,500,250)
-a = d.find_elements_by_class_name("android.widget.ImageView")
-a[14].click()
+# d.swipe(500,1000,500,250)
+# a = d.find_elements_by_class_name("android.widget.ImageView")
+# a[14].click()
+# time.sleep(5)
+#
+# print(d.contexts)
+# d.switch_to.context('webview')
+# d.swipe(500,1000,500,300)
+# d.find_element_by_xpath("//android.widget.Image[@content-desc='【抽奖团】香雪海 BC-50B 家用单门迷你小冰箱'").click()
+d.start_activity('com.bugua.fight','com.yuelian.qqemotion.splash.SplashActivity')
 time.sleep(5)
+print(d.current_activity)
+d.activity
 
-print(d.contexts)
-d.switch_to.context('webview')
-d.swipe(500,1000,500,300)
-d.find_element_by_xpath("//android.widget.Image[@content-desc='【抽奖团】香雪海 BC-50B 家用单门迷你小冰箱'").click()

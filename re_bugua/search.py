@@ -9,7 +9,7 @@ from HTMLTestRunner import HTMLTestRunner
 import  os
 from Element_Click_Check import ElementCheck
 
-class SearchTest(unittest.TestCase):
+class Search_Test(unittest.TestCase):
 
     def setUp(self):
         print('Test start')

@@ -7,7 +7,7 @@ import random
 from appium.webdriver.common.touch_action import TouchAction
 from HTMLTestRunner import HTMLTestRunner
 from extend import Appium_Extend
-from Element_Click_Check import ElementCheck
+from re_Element_Click_Check import ElementCheck
 
 class Follow_Test(unittest.TestCase):
 

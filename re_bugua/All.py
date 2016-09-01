@@ -10,7 +10,9 @@ from Theme import ThemeTest
 from New_picture import New_pictureTest
 from Follow import Follow_Test
 from Recommend import RecommendTest
+from Suspension import Suspension_Test
 from share import ShareTest
+
 import time
 import os
 
@@ -38,6 +40,7 @@ if __name__=="__main__":
     suite.addTest(DraftingTest('zhuangbi_test'))
     suite.addTest(DraftingTest('losts_pic_one_click1'))
     suite.addTest(DraftingTest('losts_pic_one_click2'))
+    suite.addTest(DraftingTest('text_gif_text'))
     suite.addTest(RepliesTest('EssenceTest'))
     suite.addTest(RepliesTest('PleaseTest'))
     suite.addTest(RepliesTest('All_areaTest'))
@@ -55,6 +58,8 @@ if __name__=="__main__":
     suite.addTest(Follow_Test('Follow_user1'))
     suite.addTest(Follow_Test('Follow_package1'))
     suite.addTest(RecommendTest('User_test1'))
+    suite.addTest(Suspension_Test('weixin_suspension_test'))
+    suite.addTest(Suspension_Test('qq_suspension_test'))
     # suite.addTest(ShareTest('post_share_click_QQ'))
     # suite.addTest(ShareTest('post_share_click_kongjian'))
     # suite.addTest(ShareTest('post_share_click_weixin'))
@@ -124,7 +129,7 @@ if __name__=="__main__":
     # suite.addTest(ShareTest('recommend_share_longpass_weixin'))
     # suite.addTest(ShareTest('recommend_share_longpass_pengyouquan'))
     # suite.addTest(ShareTest('recommend_share_longpass_renren'))
-    ## suite.addTest(ShareTest('recommend_share_longpass_momo'))#由于陌陌分享出去有特殊性暂时不适用
+    # # suite.addTest(ShareTest('recommend_share_longpass_momo'))#由于陌陌分享出去有特殊性暂时不适用
     #直接执行测试用例
     # runner = unittest.TextTestRunner()
     # runner.run(suite)

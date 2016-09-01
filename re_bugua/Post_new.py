@@ -7,7 +7,7 @@ import unittest
 import random
 from extend import Appium_Extend
 from HTMLTestRunner import HTMLTestRunner
-from Element_Click_Check import ElementCheck
+from re_Element_Click_Check import ElementCheck
 
 class PostTest(unittest.TestCase):
 

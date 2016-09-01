@@ -7,7 +7,7 @@ import random
 from appium.webdriver.common.touch_action import TouchAction
 from HTMLTestRunner import HTMLTestRunner
 from extend import Appium_Extend
-from Element_Click_Check import ElementCheck
+from re_Element_Click_Check import ElementCheck
 
 class ThemeTest(unittest.TestCase):
 
@@ -67,6 +67,7 @@ class ThemeTest(unittest.TestCase):
         self.ElementCheck.check_assertTrue(result, msg='已关注按钮未改变')
         #检查是否已取消关注
         self.d.back()
+        time.sleep(2)
         result = self.ElementCheck.existence('name',theme)
         self.ElementCheck.check_assertFalse(result, msg='关注主题未成功')
 
@@ -79,9 +80,10 @@ class ThemeTest(unittest.TestCase):
         self.ElementCheck.check_assertTrue(result, msg='未进入关注列表')
         #选择关注一个主题
         theme = self.ElementCheck.random_click_get_other_name('id','com.bugua.fight:id/theme_support','id','com.bugua.fight:id/theme_title')
-        result = self.ElementCheck.existence('name','已关注')
+        result = self.ElementCheck.click_change('id','com.bugua.fight:id/is_follow')
         self.ElementCheck.check_assertTrue(result, msg='关注按钮未改变')
         #返回首页主题
+        self.d.back()
         self.d.back()
         time.sleep(4)
         result = self.ElementCheck.existence('name',theme)
@@ -95,6 +97,7 @@ class ThemeTest(unittest.TestCase):
         time.sleep(1)
         result = self.ElementCheck.existence('name',theme)
         self.ElementCheck.check_assertFalse(result, msg='关注主题未成功')
+
     def Theme_picture1(self):
         #点击主题
         result = self.ElementCheck.click_change('id','com.bugua.fight:id/theme_tv')
@@ -169,8 +172,8 @@ if __name__=="__main__":
     #编辑用例
     suite = unittest.TestSuite()
     # suite.addTest(ThemeTest('Follow_Theme_Test1'))
-    # suite.addTest(ThemeTest('Follow_Theme_Test2')
-    suite.addTest(ThemeTest('Theme_picture1'))
+    suite.addTest(ThemeTest('Follow_Theme_Test2'))
+    # suite.addTest(ThemeTest('Theme_picture1'))
     #suite.addTest(ThemeTest('Theme_picture2'))
     #suite.addTest(ThemeTest('Theme_picture3'))
     #执行用例

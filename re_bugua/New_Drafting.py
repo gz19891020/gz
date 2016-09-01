@@ -7,7 +7,7 @@ import unittest
 import random
 from appium.webdriver.common.touch_action import TouchAction
 from extend import Appium_Extend
-from Element_Click_Check import ElementCheck
+from re_Element_Click_Check import ElementCheck
 from HTMLTestRunner import HTMLTestRunner
 import  os
 
@@ -346,14 +346,14 @@ class DraftingTest(unittest.TestCase):
         except:
             pass
         try:
-            text = self.d.find_elements_by_id('com.bugua.fight:id/cool_input_et')
+            text = self.d.find_elements_by_id('com.bugua.fight:id/input_et')
             print(len(text))
             for i in range(len(text)):
                 text[i].send_keys('bugua')
         except:
             pass
         time.sleep(0.5)
-        self.ElementCheck.click_jump('id','com.bugua.fight:id/template_make','id','com.bugua.fight:id/btn_finish')
+        self.ElementCheck.click_jump('id','com.bugua.fight:id/make','id','com.bugua.fight:id/btn_finish')
         #结果文件夹
         try:
             os._exists(r'./result') == False
@@ -434,19 +434,68 @@ class DraftingTest(unittest.TestCase):
         self.assertFalse(result,msg='换一批失败')
         #选择图片分享出去
         self.ElementCheck.random_click('xpath', '//android.widget.ImageView/..', 'long_pass')
-        time.sleep(2)
         #点击收藏
         result = self.ElementCheck.click_change('id','com.bugua.fight:id/btn_star')
         self.ElementCheck.check_assertTrue(result,msg='收藏按钮失败')
         #分享到微信
         self.ElementCheck.share_picture_weixin()
 
-
-
-
-
-
-
+    def text_gif_text(self):
+        """制图文字表情"""
+        #点击制图
+        result = self.ElementCheck.click_change('id','com.bugua.fight:id/zhitu_pic')
+        self.ElementCheck.check_assertTrue(result,msg='制图按钮失灵，进入制图页面失败')
+        #点击更多
+        result = self.ElementCheck.click_change('id','com.bugua.fight:id/more_tv')
+        self.ElementCheck.check_assertTrue(result,msg='点击更多失败')
+        #点击海量生成模板
+        result = self.ElementCheck.click_jump('id','com.bugua.fight:id/text_gif','name','文字表情')
+        self.ElementCheck.check_assertTrue(result,msg='进入海量生成模板失败')
+        #移动文字框到左上角
+        loction = self.d.find_element_by_id('com.bugua.fight:id/img_container').location
+        size = self.d.find_element_by_id('com.bugua.fight:id/img_container').size
+        #print(size)
+        editText = self.d.find_element_by_xpath('//*[@resource-id="com.bugua.fight:id/img_container"]/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.EditText[1]')
+        TouchAction(self.d).press(editText).move_to(x=loction['x']-editText.location['x'],y=loction['y']-editText.location['y']).perform()
+        time.sleep(1)
+        self.d.get_screenshot_as_file('./result/text_gif_text_move_edittext.png')
+        #将文字框扩大到最大
+        button = self.d.find_element_by_xpath('//*[@resource-id="com.bugua.fight:id/img_container"]/android.widget.FrameLayout/android.widget.ImageView')
+        TouchAction(self.d).long_press(button).move_to(x=(size['width']-button.location['x']),y=(loction['y']+size['height']-button.location['y'])).release().perform()
+        time.sleep(2)
+        self.d.get_screenshot_as_file('./result/text_gif_text_edittext_max.png')
+        #随机选择文案
+        name = self.ElementCheck.random_click_get_name('xpath','//android.support.v7.widget.RecyclerView/android.widget.TextView')
+        self.assertEqual(editText.get_attribute('name'),name,'选择文案失败')
+        #点击字体
+        self.ElementCheck.click_change('id','com.bugua.fight:id/font')
+        #随机点击字体
+        #self.extnd.get_screenshot_by_element(editText).write_to_file('./Temp','editText')
+        self.ElementCheck.random_click('xpath','//*[@resource-id="com.bugua.fight:id/container"]/android.widget.LinearLayout/android.widget.FrameLayout')
+        self.d.get_screenshot_as_file('./result/text_gif_text_edittext_font.png')
+        #点击颜色
+        self.ElementCheck.click_change('id','com.bugua.fight:id/color')
+        #随机选择颜色
+        #self.extnd.get_screenshot_by_element(editText).write_to_file('./Temp','editText')
+        self.ElementCheck.random_click('id','com.bugua.fight:id/image')
+        self.d.get_screenshot_as_file('./result/text_gif_text_edittext_color.png')
+        #点击对其
+        self.ElementCheck.click_change('id','com.bugua.fight:id/align')
+        #随机选择对齐
+        self.extnd.get_screenshot_by_element(editText).write_to_file('./Temp','editText')
+        self.ElementCheck.random_click('id','com.bugua.fight:id/image')
+        self.d.get_screenshot_as_file('./result/text_gif_text_edittext_align.png')
+        #点击保存
+        self.ElementCheck.click_change('id','com.bugua.fight:id/right_corner_btn','hide')
+        #发送到微信
+        self.ElementCheck.click_change('id','com.bugua.fight:id/share_to_wechat','hide')
+        time.sleep(3)
+        #发送给管昭
+        self.d.find_element_by_name('管昭').click()
+        time.sleep(2)
+        self.d.find_element_by_name('分享').click()
+        time.sleep(1)
+        self.d.find_element_by_id('com.tencent.mm:id/a7m').click()
 
 if __name__=="__main__":
     #编辑用例
@@ -461,8 +510,10 @@ if __name__=="__main__":
     # suite.addTest(DraftingTest('Classification_Test'))
     #suite.addTest(DraftingTest('Page_swipe_Test'))
     # suite.addTest(DraftingTest('zhuangbi_test'))
-    suite.addTest(DraftingTest('losts_pic_one_click1'))
-    suite.addTest(DraftingTest('losts_pic_one_click2'))
+    # suite.addTest(DraftingTest('losts_pic_one_click1'))
+    # suite.addTest(DraftingTest('losts_pic_one_click2'))
+    suite.addTest(DraftingTest('text_gif_text'))
+
     #执行用例
     runner = unittest.TextTestRunner()
     runner.run(suite)

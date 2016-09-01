@@ -7,7 +7,7 @@ import random
 from appium.webdriver.common.touch_action import TouchAction
 from HTMLTestRunner import HTMLTestRunner
 from extend import Appium_Extend
-from Element_Click_Check import ElementCheck
+from re_Element_Click_Check import ElementCheck
 
 class RecommendTest(unittest.TestCase):
 
@@ -77,7 +77,6 @@ class RecommendTest(unittest.TestCase):
         self.d.find_element_by_name('关注').click()
         result = self.ElementCheck.existence('name', user_name)
         self.assertFalse(result, msg='发现关注的推荐用户')
-
 if __name__=="__main__":
     #编辑用例
     suite = unittest.TestSuite()

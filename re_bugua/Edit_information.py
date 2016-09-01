@@ -5,7 +5,7 @@ from appium import webdriver
 import time
 import unittest
 import random
-from Element_Click_Check import  ElementCheck
+from re_Element_Click_Check import  ElementCheck
 from HTMLTestRunner import HTMLTestRunner
 
 class Edit_informationTest(unittest.TestCase):
@@ -57,8 +57,7 @@ class Edit_informationTest(unittest.TestCase):
         #收集图片
         result = self.ElementCheck.random_click('id','com.android.documentsui:id/icon_thumb')
         self.ElementCheck.check_assertTrue(result,msg='选择头像失败')
-        self.d.get_screenshot_as_file('./picture/HeadportraitTes.jpg')
-
+        self.d.get_screenshot_as_file('./result/HeadportraitTes.jpg')#其实这里可以用图片不同进行判断
     def RenameTest(self):
         """修改昵称"""
         #点击【我的】按钮
@@ -152,10 +151,10 @@ class Edit_informationTest(unittest.TestCase):
 if __name__=="__main__":
     #编辑用例
     suite=unittest.TestSuite()
-    #suite.addTest(Edit_informationTest('HeadPortraitTest'))
+    suite.addTest(Edit_informationTest('HeadPortraitTest'))
     suite.addTest(Edit_informationTest('RenameTest'))
-    #suite.addTest(Edit_informationTest('SexTest'))
-    #suite.addTest(Edit_informationTest('SelfIntroductionTest'))
+    suite.addTest(Edit_informationTest('SexTest'))
+    suite.addTest(Edit_informationTest('SelfIntroductionTest'))
     #执行用例
     runner =unittest.TextTestRunner()
     runner.run(suite)

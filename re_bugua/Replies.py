@@ -6,8 +6,8 @@ import unittest
 import random
 from appium.webdriver.common.touch_action import TouchAction
 from HTMLTestRunner import HTMLTestRunner
-import  os
-from Element_Click_Check import ElementCheck
+import os
+from re_Element_Click_Check import ElementCheck
 
 class RepliesTest(unittest.TestCase):
 
@@ -269,13 +269,14 @@ class RepliesTest(unittest.TestCase):
         #点击一键生成
         self.d.find_element_by_name('一键生成').click()
         #time.sleep(2)
-        self.ElmentCheck.wait('xpath','//android.widget.ImageView/..')
+        self.ElmentCheck.wait_element('xpath','//android.widget.ImageView/..')
         #计数是否为0
         result = self.ElmentCheck.existence('name','（0）完成')
         self.ElmentCheck.check_assertTrue(result,msg='计数显示fail')
         time.sleep(5)
         #随机选择图片
         self.ElmentCheck.random_click('xpath','//android.widget.ImageView/..')
+        time.sleep(5)
         #计数是否为1
         result = self.ElmentCheck.existence('name','（1）完成')
         self.ElmentCheck.check_assertTrue(result,msg='计数显示fail')
@@ -316,7 +317,7 @@ class RepliesTest(unittest.TestCase):
         #点击一键生成
         self.d.find_element_by_name('一键生成').click()
         #time.sleep(2)
-        self.ElmentCheck.wait('xpath','//android.widget.ImageView/..')
+        self.ElmentCheck.wait_element('xpath','//android.widget.ImageView/..')
         #计数是否为0
         result = self.ElmentCheck.existence('name','（0）完成')
         self.ElmentCheck.check_assertTrue(result,msg='计数显示fail')

@@ -7,7 +7,7 @@ import random
 from appium.webdriver.common.touch_action import TouchAction
 from HTMLTestRunner import HTMLTestRunner
 from extend import Appium_Extend
-from Element_Click_Check import ElementCheck
+from re_Element_Click_Check import ElementCheck
 
 class New_pictureTest(unittest.TestCase):
 
@@ -112,19 +112,19 @@ class New_pictureTest(unittest.TestCase):
             self.d.swipe(width*280/1080, height*1600/1776, width*280/1080, height*432/1776)
             i = i+1
         time.sleep(2)
-        self.d.swipe(width*280/1080, height*500/1776, width*280/1080, height*900/1776)
-        time.sleep(1)
-        self.ElementCheck.click('id','com.bugua.fight:id/to_top')
+        self.d.swipe(width*280/1080, height*500/1800, width*280/1080, height*900/1800)
         time.sleep(2)
+        self.ElementCheck.click('id','com.bugua.fight:id/to_top')
+        time.sleep(5)
         result=self.ElementCheck.existence('name','大家正在发')
         self.assertTrue(result, msg='没有回到顶部')
 
 if __name__=="__main__":
     #编辑用例
     suite = unittest.TestSuite()
-    # suite.addTest(New_pictureTest('Picture1'))
+    suite.addTest(New_pictureTest('Picture1'))
     # suite.addTest(New_pictureTest('Picture2'))
-    suite.addTest(New_pictureTest('Top'))
+    # suite.addTest(New_pictureTest('Top'))
     #执行用例
     runner = unittest.TextTestRunner()
     runner.run(suite)
